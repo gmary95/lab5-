@@ -29,22 +29,9 @@ class ViewController: NSViewController {
     
     @IBAction func startimitation(_ sender: Any) {
         TimeMod = Double(NText.title) ?? 100.0
-        TimeCurrent=0
-        NumServ=0
-        NumUnServ=0
-        NumAll=0
-        Device=0
-        TimeExit = TimeMod+1.0
-        TimeAct=0
-        min=TimeAct
-        sob=1
-        CurQue=0
-        AverageQueue=0
-        AverageDevice=0
         
-        while TimeCurrent < TimeMod {
-            
-        }
+        imitation()
+        
         statisticsTable.reloadData()
     }
     
@@ -54,20 +41,19 @@ class ViewController: NSViewController {
         var NumSMO: Int
         var systEntry: TSystEntry
         var join: [TJoin]
-        var joinIn: [TJoinIN]
-        var joinOut: [TJoinOUT]
+        var joinIn: TJoinIN
+        var joinOut: TJoinOUT
         var tmin: Double
         var event: Int
         var AverQue,AverDevices: [Double]
-        var i: Int
-        var prob,choice: Double
+        var prob: Double
         
         let GetTimeMod = TimeMod
         let GetTimeNow = t
         
         NumSMO = 2//кількість СМО
-        smo = Array(repeating: TSMO(), count: NumSMO)
-        join = Array(repeating: TJoin(aSmoEntry: TSMO()), count: NumSMO - 1)
+        smo = Array(repeating: TSMO(aNum: 0, aMax: 0, aTimeMod: 0.0, aServ: 0.0), count: NumSMO)
+        join = Array(repeating: TJoin(aSmoEntry: smo[0], aSmoExit: smo[0]), count: NumSMO - 1)
         AverDevices = Array(repeating: 0.0, count: NumSMO)
         AverQue = Array(repeating: 0.0, count: NumSMO)
         
@@ -75,44 +61,44 @@ class ViewController: NSViewController {
         
         //структура мережі масового обслуговування
         systEntry = TSystEntry(aInterval: 0.1) //створення вхідного потоку вимог
-        smo[0] = TSMO(5,10,GetTimeMod,1.2) //створення СМО1
-        joinIn = [TJoinIN(aEntry: systEntry,aSmoExit: smo[0])]// створення маршруту до СМО1
-        smo[1] = TSMO(7,8,GetTimeMod,2) //створення СМО2
+        smo[0] = TSMO(aNum: 5,aMax: 10,aTimeMod: GetTimeMod,aServ: 1.2) //створення СМО1
+        joinIn = TJoinIN(aEntry: systEntry,aSmoExit: smo[0])// створення маршруту до СМО1
+        smo[1] = TSMO(aNum: 7,aMax: 8,aTimeMod: GetTimeMod,aServ: 2) //створення СМО2
         join[0] = TJoin(aSmoEntry: smo[0],aSmoExit: smo[1]) //створення маршруту від СМО1 до СМО2
-        joinOut = [TJoinOUT(aSmoEntry: smo[NumSMO-1])] //створення маршруту на вихід системи
+        joinOut = TJoinOUT(aSmoEntry: smo[NumSMO-1]) //створення маршруту на вихід системи
         t = 0.0 // початкове значення модельного часу
         while t < GetTimeMod {
             tmin = systEntry.GetMinTime()
             event = 0
             for i in 0 ... NumSMO-1 {
-                if smo[i].GetMinTime<tmin {
-                    tmin = smo[i].GetMinTime
+                if smo[i].GetMinTime() < tmin {
+                    tmin = smo[i].GetMinTime()
                     event += 1
                 }
             }
             for i in 0 ... NumSMO-1 {
-                AverQue[i] = AverQue[i] + ((tmin - t) / GetTimeMod) * smo[i].GetStateQue
-                AverDevices[i] = AverDevices[i] + ((tmin - t) / GetTimeMod) * smo[i].GetAverLoadChannel
+                AverQue[i] = AverQue[i] + ((tmin - t) / GetTimeMod) * Double(smo[i].GetStateQue())
+                AverDevices[i] = AverDevices[i] + ((tmin - t) / GetTimeMod) * smo[i].GetAverLoadChannel()
             }
             t = tmin //просування часу в момент найближчої події
             switch event {
             case 0:
                 systEntry.Arrival(at: GetTimeNow)
                 joinIn.send()
-                smo[0].Seize(GetTimeNow)
+                smo[0].Seize(at: GetTimeNow)
                 
             case 1:
-                smo[0].Releize(smo[0].GetMinChannel,GetTimeMod,GetTimeNow)
+                smo[0].Releize(aChannel: smo[0].GetMinChannel(),aTimeMod: GetTimeMod,at: GetTimeNow)
                 join[0].send()
-                smo[1].Seize(GetTimeNow)
+                smo[1].Seize(at: GetTimeNow)
                 
             case 2:
-                smo[1].Releize(smo[1].GetMinChannel,GetTimeMod,GetTimeNow)
+                smo[1].Releize(aChannel: smo[1].GetMinChannel(),aTimeMod: GetTimeMod,at: GetTimeNow)
                 joinOut.send()
             default:
                 break
             }
-            prob = joinIn.GetNumUnServ()
+            prob = Double(joinIn.GetNumUnServ())
             for i in 0 ... NumSMO-2 {
                 prob = prob + Double(join[i].GetNumUnServ())
             }

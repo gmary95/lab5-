@@ -11,9 +11,7 @@
 		8E1D4EC7225538D00074B619 /* Join.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1D4EC6225538D00074B619 /* Join.swift */; };
 		8E1D4EC9225543DA0074B619 /* TSystEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1D4EC8225543DA0074B619 /* TSystEntry.swift */; };
 		8E256C882250E5C000376E80 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E256C872250E5C000376E80 /* DoubleExtension.swift */; };
-		8E256C8A225108A800376E80 /* SMO1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E256C89225108A800376E80 /* SMO1.swift */; };
 		8E256C8C225109F500376E80 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E256C8B225109F400376E80 /* Generator.swift */; };
-		8E256C8E22510B2500376E80 /* SMO2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E256C8D22510B2500376E80 /* SMO2.swift */; };
 		8EFDEADE2248BEA600D70225 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFDEADD2248BEA600D70225 /* AppDelegate.swift */; };
 		8EFDEAE02248BEA600D70225 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFDEADF2248BEA600D70225 /* ViewController.swift */; };
 		8EFDEAE22248BEA700D70225 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EFDEAE12248BEA700D70225 /* Assets.xcassets */; };
@@ -25,9 +23,7 @@
 		8E1D4EC6225538D00074B619 /* Join.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Join.swift; sourceTree = "<group>"; };
 		8E1D4EC8225543DA0074B619 /* TSystEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSystEntry.swift; sourceTree = "<group>"; };
 		8E256C872250E5C000376E80 /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
-		8E256C89225108A800376E80 /* SMO1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMO1.swift; sourceTree = "<group>"; };
 		8E256C8B225109F400376E80 /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
-		8E256C8D22510B2500376E80 /* SMO2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMO2.swift; sourceTree = "<group>"; };
 		8EFDEADA2248BEA600D70225 /* lab5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lab5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EFDEADD2248BEA600D70225 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EFDEADF2248BEA600D70225 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,8 +71,6 @@
 				8EFDEAE32248BEA700D70225 /* Main.storyboard */,
 				8EFDEAE62248BEA700D70225 /* Info.plist */,
 				8EFDEAE72248BEA700D70225 /* lab5.entitlements */,
-				8E256C89225108A800376E80 /* SMO1.swift */,
-				8E256C8D22510B2500376E80 /* SMO2.swift */,
 				8E1D4EC4225537030074B619 /* TSMO.swift */,
 				8E1D4EC6225538D00074B619 /* Join.swift */,
 				8E1D4EC8225543DA0074B619 /* TSystEntry.swift */,
@@ -157,12 +151,10 @@
 				8E256C882250E5C000376E80 /* DoubleExtension.swift in Sources */,
 				8EFDEAE02248BEA600D70225 /* ViewController.swift in Sources */,
 				8E1D4EC7225538D00074B619 /* Join.swift in Sources */,
-				8E256C8A225108A800376E80 /* SMO1.swift in Sources */,
 				8E1D4EC9225543DA0074B619 /* TSystEntry.swift in Sources */,
 				8EFDEADE2248BEA600D70225 /* AppDelegate.swift in Sources */,
 				8E1D4EC5225537030074B619 /* TSMO.swift in Sources */,
 				8E256C8C225109F500376E80 /* Generator.swift in Sources */,
-				8E256C8E22510B2500376E80 /* SMO2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

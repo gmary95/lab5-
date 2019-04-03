@@ -15,8 +15,8 @@ class TJoin { //об’єкт «маршрут», що передає вимог
     
     func send() { //здійснює передачу вимоги уздовж заданого маршруту
         if GetState() == true {
-            EntrySmo.SetExit(false)
-            ExitSmo.SetEntry(true)
+            EntrySmo.SetExit(aEnt: false)
+            ExitSmo.SetEntry(aEx: true)
         } else {
             NumUnServ = NumUnServ+1
         }
@@ -52,7 +52,7 @@ class TJoinIN { //об’єкт «маршрут входу», що переда
     func send() {
         if GetState() == true {
             Entry.SetExit(aEnt: false)
-            ExitSmo.SetEntry(true)
+            ExitSmo.SetEntry(aEx: true)
         } else {
             NumUnServ = NumUnServ+1
         }
@@ -85,7 +85,7 @@ class TJoinOUT {//об’єкт «маршрут виходу», що перед
     
     func send() {
         if State == true {
-            EntrySmo.SetExit(false)
+            EntrySmo.SetExit(aEnt: false)
             NumService += 1
         }
     }
