@@ -1,4 +1,4 @@
-class SMO1 {
+class SMO1: TSMO {
     var TimeCurrent: Double
     let MaxQue = 6
     let lamb = 0.2
@@ -6,6 +6,7 @@ class SMO1 {
     
     init(TimeCurrent: Double, TimeMod: Double) {
         self.TimeCurrent = TimeCurrent
+        self.TimeMod = TimeMod
     }
     //Подія "надходження вимоги до СМО"
     func EventEnter( aDevice: inout Int, aTimeExit: inout Double, aTimeAct: inout Double, aCurQue: inout Int, NumUnServ: inout Int, NumAll: inout Int){
